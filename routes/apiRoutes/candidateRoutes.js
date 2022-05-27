@@ -1,5 +1,4 @@
 const express = require("express");
-const { route } = require(".");
 const router = express.Router();
 const db = require("../../db/connection");
 const inputCheck = require("../../utils/inputCheck");
@@ -119,7 +118,7 @@ router.delete("/candidate/:id", (req, res) => {
 
   db.query(sql, params, (err, result) => {
     if (err) {
-      res.statusMessage(400).json({ error: res.message });
+      res.status(400).json({ error: res.message });
     } else if (!result.affectedRows) {
       res.json({
         message: "Candidate not found",
